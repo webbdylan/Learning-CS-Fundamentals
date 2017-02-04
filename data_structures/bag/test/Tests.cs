@@ -19,7 +19,7 @@ public class Tests
         _sut.Add(1);
 
         //Then
-        Assert.Equal(1, _sut.Count);
+        Assert.Equal(1, _sut.Size());
     }
 
     [Fact]
@@ -36,34 +36,6 @@ public class Tests
 
         //Then
         Assert.Throws<Exception>(() => localSut.Add(4));
-    }
-
-    [Fact]
-    public void Remove_DecrementsCount()
-    {
-        //Given
-        _sut.Add(1);
-        _sut.Add(3);
-        _sut.Add(2);
-        _sut.Add(3);
-
-        //When
-        _sut.Remove(3);
-
-        //Then
-        Assert.Equal(3, _sut.Count);
-
-        using (var iter = _sut.GetEnumerator())
-        {
-            var i = 1;
-
-            while (iter.MoveNext())
-            {
-                var item = iter.Current;
-
-                Assert.Equal(i++, item);
-            }
-        }
     }
 
     [Fact]
