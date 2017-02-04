@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-public interface IBagADT<T> : ICollection<T>, IEnumerable<T>
+public interface IBagADT<T> : IEnumerable<T>
 {
     //Adds an item to the container
     new void Add(T item);
