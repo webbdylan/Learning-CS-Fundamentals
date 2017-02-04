@@ -17,6 +17,6 @@ namespace ADT
         int Size();
 
         //Returns a string representation of all the items in the container
-        string Peek();
+        string ToString();
     }
 }

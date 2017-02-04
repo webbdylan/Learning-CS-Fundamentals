@@ -28,7 +28,7 @@ namespace ADT
             throw new NotImplementedException();
         }
 
-        public string Peek()
+        public override string ToString()
         {
             throw new NotImplementedException();
         }

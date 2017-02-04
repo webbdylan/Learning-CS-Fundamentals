@@ -56,5 +56,4 @@ namespace Bag.Tests
             Assert.Equal(true, _sut.IsEmpty());
         }
     }
-
 }
