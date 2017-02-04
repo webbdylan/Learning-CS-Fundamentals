@@ -5,9 +5,6 @@ public interface IBagADT<T> : IEnumerable<T>
     //Adds an item to the container
     new void Add(T item);
 
-    //Removes the first matching item from the container
-    new void Remove(T item);
-
     //Removes all items from the container
     void Clean();
 
