@@ -19,7 +19,7 @@ public class Tests
         _sut.Add(1);
 
         //Then
-        Assert.Equal(1, _sut.Count);
+        Assert.Equal(1, _sut.Size());
     }
 
     [Fact]
