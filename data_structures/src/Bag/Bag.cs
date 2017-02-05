@@ -6,80 +6,41 @@ namespace ADT
 {
     public class Bag<T>: IBag<T>
     {
-        private T[] _bag { get; set; }
-        private int _fullSpots { get; set; }
-
-        public Bag(int size = 10) { 
-            _bag = new T[size];
-        }
+        public Bag(int size = 10) { }
 
         public void Add(T item)
         {
-            try
-            {
-                if(_fullSpots == 0)
-                {
-                    _bag[_fullSpots] = item;   
-                }else
-                {
-                    _bag[_fullSpots] = item;
-                }
-                _fullSpots++;
-            }
-            catch(Exception e)
-            {
-                throw new Exception(e.StackTrace);
-            }
+            throw new NotImplementedException();
         }
 
         public void Clean()
         {
-            var cleaned = 0;
-
-            while(_fullSpots > cleaned)
-            {
-                _bag[cleaned++] = default(T);
-            }
-
-            _fullSpots = 0;
+            throw new NotImplementedException();
         }
 
         public IEnumerator<T> GetEnumerator()
         {
-            return _bag.GetEnumerator() as IEnumerator<T>;
+            throw new NotImplementedException();
         }
 
         public bool IsEmpty()
         {
-            if(_fullSpots == 0)
-            {
-                return true;
-            }else
-            {
-                return false;
-            }
+            throw new NotImplementedException();
         }
 
         public override string ToString()
         {
-            var toString = string.Empty;
-
-            for(int length = _fullSpots; length < _fullSpots; length++)
-            {
-                toString = toString + _bag[length].ToString();
-            }
-
-            return toString;
+            throw new NotImplementedException();
         }
 
         public int Size()
         {
-            return _fullSpots;
+            throw new NotImplementedException();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return (IEnumerator<T>)_bag.GetEnumerator();
+            throw new NotImplementedException();
         }
     }
 }
