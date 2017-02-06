@@ -53,7 +53,32 @@ namespace Bag.Tests
             _sut.Clean();
 
             //Then
-            Assert.Equal(true, _sut.IsEmpty());
+            Assert.Equal(0, _sut.Size());
+        }
+
+        [Fact]
+        public void IsEmpty_TrueIfNoItems()
+        {
+            //Given
+
+            //When
+            var result = _sut.IsEmpty();
+
+            //Then
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void Size_ReturnsCountOfItems()
+        {
+            //Given
+            _sut.Add(1);
+
+            //When
+            var result = _sut.Size();
+
+            //Then
+            Assert.Equal(1, result);
         }
     }
 }
