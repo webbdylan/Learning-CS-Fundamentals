@@ -1,85 +1,67 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 
 namespace ADT
 {
     public class Bag<T>: IBag<T>
     {
-        private T[] _bag { get; set; }
-        private int _fullSpots { get; set; }
+        private readonly T[] _items;
+        private readonly int _maxItemCapacity;
+        private int _itemCount;
 
-        public Bag(int size = 10) { 
-            _bag = new T[size];
+        public Bag(int size = 10)
+        {
+            _maxItemCapacity = size;
+            _items = new T[_maxItemCapacity];
+            _itemCount = 0;
         }
 
         public void Add(T item)
         {
-            try
-            {
-                if(_fullSpots == 0)
-                {
-                    _bag[_fullSpots] = item;   
-                }else
-                {
-                    _bag[_fullSpots] = item;
-                }
-                _fullSpots++;
-            }
-            catch(Exception e)
-            {
-                throw new Exception(e.StackTrace);
-            }
+            if (_itemCount >= _maxItemCapacity)
+                throw new Exception("Bag is full.");
+
+            _items[_itemCount++] = item;
         }
 
         public void Clean()
         {
-            var cleaned = 0;
+            for (var i = 0; i < _itemCount; i++)
+                _items[i] = default(T);
 
-            while(_fullSpots > cleaned)
-            {
-                _bag[cleaned++] = default(T);
-            }
-
-            _fullSpots = 0;
-        }
-
-        public IEnumerator<T> GetEnumerator()
-        {
-            return _bag.GetEnumerator() as IEnumerator<T>;
+            _itemCount = 0;
         }
 
         public bool IsEmpty()
         {
-            if(_fullSpots == 0)
-            {
-                return true;
-            }else
-            {
-                return false;
-            }
+            return _itemCount == 0;
         }
 
         public override string ToString()
         {
-            var toString = string.Empty;
+            var sb = new StringBuilder();
 
-            for(int length = _fullSpots; length < _fullSpots; length++)
-            {
-                toString = toString + _bag[length].ToString();
-            }
+            foreach (var item in _items)
+                sb.AppendLine(item.ToString());
 
-            return toString;
+            return sb.ToString();
         }
 
         public int Size()
         {
-            return _fullSpots;
+            return _itemCount;
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return (IEnumerator<T>)_bag.GetEnumerator();
+            return _items.GetEnumerator();
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            return (IEnumerator<T>)_items.GetEnumerator();
         }
     }
 }
