@@ -7,7 +7,7 @@ namespace ADT
     public class Stack<T> : IStack<T>
     {
         private T[] _items { get; set; }
-        private int _lastIndex { get; set; }
+        private int _topOfStack { get; set; }
 
         public Stack(int size)
         {
@@ -26,14 +26,10 @@ namespace ADT
 
         public T Peek()
         {
-            if(!IsEmpty())
-            {
-                return _items[_lastIndex -1];
-            }
-            else
-            {
-                throw new Exception("Stack is empty - Cannot peek.");
-            }
+            if(!IsEmpty())            
+                return _items[_topOfStack -1];            
+            else            
+                throw new Exception("Stack is empty - Cannot peek.");            
         }
 
         public T Pop()
@@ -41,30 +37,25 @@ namespace ADT
             if(!IsEmpty())
             {
                 var itemToReturn = Peek();
-                _items[_lastIndex--] = default(T);
+                _items[_topOfStack--] = default(T);
                 return itemToReturn;
             }
-            else
-            {
+            else            
                 throw new Exception("Stack is null - cannot pop.");
-            }
+            
         }
 
         public void Push(T item)
         {
-            if(_items.Length > _lastIndex)
-            {
-                _items[_lastIndex++] = item;
-            }
-            else
-            {
-                throw new Exception("Cannot Push - stack is full.");
-            }
+            if(_items.Length > _topOfStack)
+                _items[_topOfStack++] = item;           
+            else            
+                throw new Exception("Cannot Push - stack is full.");            
         }
 
         public int Size()
         {
-            return _lastIndex;
+            return _topOfStack;
         }
 
         IEnumerator IEnumerable.GetEnumerator()
