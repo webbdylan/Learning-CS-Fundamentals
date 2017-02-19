@@ -41,7 +41,7 @@ namespace ADT
             if(!IsEmpty())
             {
                 var itemToReturn = Peek();
-                _lastIndex--;
+                _items[_lastIndex--] = default(T);
                 return itemToReturn;
             }
             else
@@ -54,8 +54,7 @@ namespace ADT
         {
             if(_items.Length > _lastIndex)
             {
-                _items[_lastIndex] = item;
-                _lastIndex++;
+                _items[_lastIndex++] = item;
             }
             else
             {
