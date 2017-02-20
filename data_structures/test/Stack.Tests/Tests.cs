@@ -29,7 +29,7 @@ namespace Stack.Tests
         public void Push_ThrowsWhenFull()
         {
             //Given
-            for (var i = 0; i < 10; i++)
+            for (var i = 0; i < 5; i++)
                 _sut.Push(i);
 
             //When

@@ -6,44 +6,61 @@ namespace ADT
 {
     public class Stack<T> : IStack<T>
     {
+        private T[] _items { get; set; }
+        private int _topOfStack { get; set; }
+
         public Stack(int size)
         {
-
+            _items = new T[size]; 
         }
 
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+             return (IEnumerator<T>)_items.GetEnumerator(); 
         }
 
         public bool IsEmpty()
         {
-            throw new NotImplementedException();
+            return Size() == 0;
         }
 
         public T Peek()
         {
-            throw new NotImplementedException();
+            if(!IsEmpty())            
+                return _items[_topOfStack -1];            
+            else            
+                throw new Exception("Stack is empty - Cannot peek.");            
         }
 
         public T Pop()
         {
-            throw new NotImplementedException();
+            if(!IsEmpty())
+            {
+                var itemToReturn = Peek();
+                _items[_topOfStack--] = default(T);
+                return itemToReturn;
+            }
+            else            
+                throw new Exception("Stack is null - cannot pop.");
+            
         }
 
         public void Push(T item)
         {
-            throw new NotImplementedException();
+            if(_items.Length > _topOfStack)
+                _items[_topOfStack++] = item;           
+            else            
+                throw new Exception("Cannot Push - stack is full.");            
         }
 
         public int Size()
         {
-            throw new NotImplementedException();
+            return _topOfStack;
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return _items.GetEnumerator();
         }
     }
 }
