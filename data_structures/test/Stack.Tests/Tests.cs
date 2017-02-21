@@ -38,9 +38,9 @@ namespace Stack.Tests
             Assert.Throws<Exception>(() => _sut.Push(10));
         }
 
-        [TheoryAttribute]
-        [InlineDataAttribute(new int[] { 0 }, 0, 0)]
-        [InlineDataAttribute(new int[] {1, -2}, -2, 1)]
+        [Theory]
+        [InlineData(new int[] { 0 }, 0, 0)]
+        [InlineData(new int[] {1, -2}, -2, 1)]
         public void Pop(int[] data, int expectedItem, int expectedSize)
         {
             //Given
@@ -67,9 +67,9 @@ namespace Stack.Tests
             Assert.Throws<Exception>(() => _sut.Peek());
         }
 
-        [TheoryAttribute]
-        [InlineDataAttribute(new int[] { 1 }, 1, 1)]
-        [InlineDataAttribute(new int[] {1, 2, 4}, 4, 3)]
+        [Theory]
+        [InlineData(new int[] { 1 }, 1, 1)]
+        [InlineData(new int[] {1, 2, 4}, 4, 3)]
         public void Peek(int[] data, int expectedItem, int expectedSize)
         {
            //Given
@@ -84,9 +84,9 @@ namespace Stack.Tests
             Assert.Equal(expectedSize, _sut.Size());
         }
 
-        [TheoryAttribute]
-        [InlineDataAttribute(new int[] { }, true)]
-        [InlineDataAttribute(new int[] {1, 2, 4}, false)]
+        [Theory]
+        [InlineData(new int[] { }, true)]
+        [InlineData(new int[] {1, 2, 4}, false)]
         public void IsEmpty(int[] data, bool expected)
         {
             //Given
@@ -100,9 +100,9 @@ namespace Stack.Tests
             Assert.Equal(expected, result);
         }
 
-        [TheoryAttribute]
-        [InlineDataAttribute(new int[] { }, 0)]
-        [InlineDataAttribute(new int[] {1, 2, 4}, 3)]
+        [Theory]
+        [InlineData(new int[] { }, 0)]
+        [InlineData(new int[] {1, 2, 4}, 3)]
         public void Size(int[] data, int expected)
         {
             //Given

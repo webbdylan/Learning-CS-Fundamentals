@@ -6,17 +6,18 @@ namespace ADT
 {
     public class Stack<T> : IStack<T>
     {
-        private T[] _items { get; set; }
-        private int _topOfStack { get; set; }
+        private readonly T[] _items;
+        private int _top;
+        private int _itemCount;
 
-        public Stack(int size)
+        public Stack(int size = 5)
         {
-            _items = new T[size]; 
+            _items = new T[size];
         }
 
         public IEnumerator<T> GetEnumerator()
         {
-             return (IEnumerator<T>)_items.GetEnumerator(); 
+             return (IEnumerator<T>)_items.GetEnumerator();
         }
 
         public bool IsEmpty()
@@ -26,36 +27,37 @@ namespace ADT
 
         public T Peek()
         {
-            if(!IsEmpty())            
-                return _items[_topOfStack -1];            
-            else            
-                throw new Exception("Stack is empty - Cannot peek.");            
+            if(IsEmpty())
+                throw new Exception("Stack is empty - Cannot peek.");
+
+            return _items[_top - 1];
         }
 
         public T Pop()
         {
-            if(!IsEmpty())
-            {
-                var itemToReturn = Peek();
-                _items[_topOfStack--] = default(T);
-                return itemToReturn;
-            }
-            else            
+            if(IsEmpty())
                 throw new Exception("Stack is null - cannot pop.");
-            
+
+            var itemToReturn = Peek();
+
+            _items[_top--] = default(T);
+            _itemCount--;
+
+            return itemToReturn;
         }
 
         public void Push(T item)
         {
-            if(_items.Length > _topOfStack)
-                _items[_topOfStack++] = item;           
-            else            
-                throw new Exception("Cannot Push - stack is full.");            
+            if(Size() >= _items.Length)
+                throw new Exception("Cannot Push - stack is full.");
+
+            _items[_top++] = item;
+            _itemCount++;
         }
 
         public int Size()
         {
-            return _topOfStack;
+            return _itemCount;
         }
 
         IEnumerator IEnumerable.GetEnumerator()
