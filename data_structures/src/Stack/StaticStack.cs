@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 namespace ADT
 {
-    public class Stack<T> : IStack<T>
+    public class StaticStack<T> : IStack<T>
     {
         private readonly T[] _items;
         private int _top;
         private int _itemCount;
 
-        public Stack(int size = 5)
+        public StaticStack(int size = 5)
         {
             _items = new T[size];
         }
