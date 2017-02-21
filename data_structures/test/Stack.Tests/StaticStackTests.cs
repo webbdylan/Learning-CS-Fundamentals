@@ -4,13 +4,13 @@ using Xunit;
 
 namespace Stack.Tests
 {
-    public class Tests
+    public class StaticStackTests
     {
         private readonly IStack<int> _sut;
 
-        public Tests()
+        public StaticStackTests()
         {
-            _sut = new Stack<int>(5);
+            _sut = new StaticStack<int>(5);
         }
 
         [Fact]
