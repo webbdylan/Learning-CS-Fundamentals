@@ -9,7 +9,6 @@ namespace ADT
         private const int MIN_SIZE = 4;
         private T[] _items;
         private int _top;
-        private int _itemCount;
         public int Capacity => _items.Length;
 
         public DynamicStack()
@@ -32,7 +31,7 @@ namespace ADT
             if (IsEmpty())
                 throw new Exception("Stack is empty - Cannot peek.");
 
-            return _items[_top];
+            return _items[_top - 1];
         }
 
         public T Pop()

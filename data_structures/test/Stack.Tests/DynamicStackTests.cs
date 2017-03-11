@@ -43,7 +43,7 @@ namespace Stack.Tests
             //When
             int result = -1;
 
-            for (var i = 0; i <= numerOfPops; i++)
+            for (var i = 0; i < numerOfPops; i++)
             {
                 result = _sut.Pop();
             }
