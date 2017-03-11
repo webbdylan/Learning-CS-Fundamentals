@@ -9,7 +9,6 @@ namespace ADT
         private const int MIN_SIZE = 4;
         private T[] _items;
         private int _top;
-        private int _itemCount;
         public int Capacity => _items.Length;
 
         public DynamicStack()
@@ -32,24 +31,31 @@ namespace ADT
             if (IsEmpty())
                 throw new Exception("Stack is empty - Cannot peek.");
 
-            return _items[_top];
+            return _items[_top - 1];
         }
 
         public T Pop()
         {
-            //You will need to have logic here to determine if the array needs to shrink
-            throw new NotImplementedException();
+            if(IsEmpty())
+                throw new Exception("Stack is empty - cannot pop.");
+                
+            if(_top - Capacity > 2 && Capacity != MIN_SIZE)
+                Resize();
+
+            return _items[--_top];
         }
 
         public void Push(T item)
         {
-            //You will need to have logic here to determine if the array needs to grow
-            throw new NotImplementedException();
+            if(_top + 1 >= Capacity)
+                Resize();
+                
+            _items[_top++] = item;
         }
 
         public int Size()
         {
-            return _itemCount;
+            return _top;
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -61,6 +67,18 @@ namespace ADT
         {
             //This function needs to resize the items array when called.
             //Calling this function will result in the items array growing or shrinking
+            if(Capacity == MIN_SIZE || _top % MIN_SIZE > 2)
+            {
+                var copy = new T[Capacity + MIN_SIZE];
+                _items.CopyTo(copy, 0);
+                _items = copy;
+            }        
+            else
+            {
+                var copy = new T[Capacity - MIN_SIZE];
+                _items.CopyTo(copy, 0);
+                _items = copy;
+            }   
         }
     }
 }
