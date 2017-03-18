@@ -4,11 +4,11 @@ using Xunit;
 
 namespace Bag.Tests
 {
-    public class BagTests
+    public class Tests
     {
         private readonly IBag<int> _sut;
 
-        public BagTests()
+        public Tests()
         {
             _sut = new Bag<int>();
         }
